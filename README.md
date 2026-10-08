@@ -1,12 +1,14 @@
-# Currency Explorer · Starter Project
+# Currency Explorer
 
 ## Integrantes
-- Estudiante A:
-- Estudiante B:
+- Estudiante A: Benjamin (@Br-Benja)
+- Estudiante B: Leonardo (@22031485-byte)
 
 ## Pair Programming
 | Misión | Driver | Navigator | Commit / evidencia |
 |---|---|---|---|
+| 00 | Benjamin | Leonardo | Starter Project inicial |
+| 01–03 | Leonardo | Benjamin | Flujo guiado EUR/USD verificado · evidencias/network-eur-usd.png |
 | 04 | | | |
 | 05 | | | |
 | 06 | | | |
@@ -14,6 +16,7 @@
 | 08 | | | |
 | 09 | | | |
 | 10 | | | |
+| 11 | | | |
 
 ## Objetivo
 Completar una aplicación frontend que consuma Frankfurter API para convertir divisas y demostrar comprensión de eventos, DOM, `fetch()`, JSON, asincronía, validación y manejo de errores.

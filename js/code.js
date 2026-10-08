@@ -42,6 +42,7 @@ async function convertirMoneda() {
 
     // TODO · MISIÓN 09: comprobar response.ok y lanzar un error si corresponde.
     const datos = await respuesta.json();
+    console.log("Respuesta de la API:", datos);
 
     const conversion = valor * datos.rate;
 

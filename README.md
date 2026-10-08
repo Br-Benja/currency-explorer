@@ -9,7 +9,7 @@
 |---|---|---|---|
 | 00 | Benjamin | Leonardo | Starter Project inicial |
 | 01–03 | Leonardo | Benjamin | Flujo guiado EUR/USD verificado · evidencias/console-eur-usd.png |
-| 04 | Benjamin | Leonardo | Origen y destino desde los <select> · evidencias/app-eur-jpy.png, network-headers-eur-jpy.png, network-response-eur-jpy.png |
+| 04 | Benjamin | Leonardo | Origen y destino desde los `<select>` · `evidencias/app-eur-jpy.png`, `network-headers-eur-jpy.png`, `network-response-eur-jpy.png` |
 | 05 | | | |
 | 06 | | | |
 | 07 | | | |
@@ -34,7 +34,7 @@ Endpoint de referencia:
 ## Decisiones técnicas
 Registra aquí al menos dos decisiones tomadas por la pareja y explica por qué.
 
-1. Leemos origen.value y destino.value dentro de convertirMoneda() y no al cargar la página, para usar siempre la moneda seleccionada en el momento del clic.
+1. Leemos `origen.value` y `destino.value` dentro de `convertirMoneda()` y no al cargar la página, para usar siempre la moneda seleccionada en el momento del clic.
 2. 
 
 ## Revisión cruzada

@@ -8,8 +8,8 @@
 | Misión | Driver | Navigator | Commit / evidencia |
 |---|---|---|---|
 | 00 | Benjamin | Leonardo | Starter Project inicial |
-| 01–03 | Leonardo | Benjamin | Flujo guiado EUR/USD verificado · evidencias/network-eur-usd.png |
-| 04 | | | |
+| 01–03 | Leonardo | Benjamin | Flujo guiado EUR/USD verificado · evidencias/console-eur-usd.png |
+| 04 | Benjamin | Leonardo | Origen y destino desde los <select> · evidencias/network-mxn-jpy.png |
 | 05 | | | |
 | 06 | | | |
 | 07 | | | |

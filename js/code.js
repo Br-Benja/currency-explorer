@@ -12,10 +12,15 @@ const btnIntercambiar = document.querySelector("#intercambiar");
 const resultado = document.querySelector("#resultado");
 const resultadoTexto = document.querySelector("#resultadoTexto");
 const detalleTasa = document.querySelector("#detalleTasa");
+const btnHistorico = document.querySelector("#verHistorico");
+const historialEstado = document.querySelector("#historialEstado");
+const lienzoGrafica = document.querySelector("#grafica");
+let grafica = null; // MISIÓN 11: guardamos la gráfica para poder reemplazarla
 
 // 2. EVENTOS
 btnConvertir.addEventListener("click", convertirMoneda);
 btnIntercambiar.addEventListener("click", intercambiarMonedas);
+btnHistorico.addEventListener("click", mostrarHistorico);
 
 // 3. FUNCIÓN PRINCIPAL
 async function convertirMoneda() {
@@ -120,6 +125,56 @@ async function obtenerTasa(monedaOrigen, monedaDestino) {
   return datos;
 }
 
+async function mostrarHistorico() {
+  // MISIÓN 11: serie temporal mensual del par elegido.
+  const monedaOrigen = origen.value;
+  const monedaDestino = destino.value;
+
+  if (monedaOrigen === monedaDestino) {
+    historialEstado.textContent = "Elige dos monedas distintas para ver el histórico.";
+    return;
+  }
+
+  btnHistorico.disabled = true;
+  historialEstado.textContent = "Consultando histórico...";
+
+  try {
+    const serie = await obtenerHistorico(monedaOrigen, monedaDestino);
+
+    // Dos arreglos: uno para el eje X (meses) y otro para el eje Y (tasas).
+    const meses = serie.map(registro => registro.date.slice(0, 7));
+    const tasas = serie.map(registro => registro.rate);
+
+    dibujarGrafica(meses, tasas, monedaOrigen, monedaDestino);
+    historialEstado.textContent = `${serie.length} meses · 1 ${monedaOrigen} pasó de ${tasas[0]} a ${tasas[tasas.length - 1]} ${monedaDestino}.`;
+  } catch (error) {
+    historialEstado.textContent = "No fue posible obtener el histórico.";
+    console.error(error);
+  } finally {
+    btnHistorico.disabled = false;
+  }
+}
+
+async function obtenerHistorico(monedaOrigen, monedaDestino) {
+  // MISIÓN 11: la API devuelve un arreglo con un registro por mes.
+  const url = `https://api.frankfurter.dev/v2/rates?base=${monedaOrigen}&quotes=${monedaDestino}&from=2026-01-01&group=month`;
+  const respuesta = await fetch(url);
+
+  if (!respuesta.ok) {
+    throw new Error(`El servicio respondió con un error (código ${respuesta.status}).`);
+  }
+
+  const serie = await respuesta.json();
+  console.log("Histórico de la API:", serie);
+
+  if (!Array.isArray(serie) || serie.length === 0) {
+    throw new Error("La API no devolvió una serie de datos.");
+  }
+
+  return serie;
+}
+
+
 // 4. UTILIDADES DE INTERFAZ
 function mostrarError(mensaje) {
   resultado.classList.add("error");
@@ -152,6 +207,36 @@ function formatearNumero(numero) {
   return numero.toLocaleString("es-MX", {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2
+  });
+}
+
+function dibujarGrafica(meses, tasas, monedaOrigen, monedaDestino) {
+  // MISIÓN 11: Chart.js recibe dos arreglos: etiquetas (meses) y valores (tasas).
+  if (grafica !== null) {
+    grafica.destroy();
+  }
+
+  grafica = new Chart(lienzoGrafica, {
+    type: "line",
+    data: {
+      labels: meses,
+      datasets: [{
+        label: `1 ${monedaOrigen} en ${monedaDestino}`,
+        data: tasas,
+        borderColor: "#16758b",
+        backgroundColor: "#16758b",
+        borderWidth: 2,
+        pointRadius: 4
+      }]
+    },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: {
+        legend: { display: false },
+        title: { display: true, text: `1 ${monedaOrigen} en ${monedaDestino} por mes` }
+      }
+    }
   });
 }
 

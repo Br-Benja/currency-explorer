@@ -54,11 +54,24 @@
           <strong id="resultadoTexto">Esperando consulta...</strong>
           <small id="detalleTasa">La tasa se obtendrá al presionar Convertir.</small>
         </section>
+        
+        <!-- MISIÓN 11: histórico mensual -->
+        <section class="historial" aria-labelledby="historialTitulo">
+          <div class="historial-cabecera">
+            <h2 id="historialTitulo">Histórico mensual 2026</h2>
+            <button id="verHistorico" class="secundario" type="button">Ver histórico</button>
+          </div>
+          <div class="grafica-contenedor">
+            <canvas id="grafica" role="img" aria-label="Gráfica del tipo de cambio por mes"></canvas>
+          </div>
+          <small id="historialEstado">Elige dos monedas y presiona "Ver histórico".</small>
+        </section>
       </section>
 
       <footer class="footer-note">HTML + CSS + JavaScript · Pair Programming</footer>
     </section>
   </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.js"></script>
   <script src="js/code.js"></script>
 </body>
 </html>

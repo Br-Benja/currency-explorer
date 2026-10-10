@@ -12,7 +12,7 @@
 | 04 | Benjamin | Leonardo | Origen y destino desde los `<select>` · `evidencias/app-eur-jpy.png`, `network-headers-eur-jpy.png`, `network-response-eur-jpy.png` |
 | 05 | Leonardo | Benjamin | `mostrarResultado()` y `formatearNumero()` · resultado con separador de miles · `evidencias/m05-formato-miles.jpeg` |
 | 06 | Benjamin | Leonardo | `intercambiarMonedas()` con variable temporal · recalcula al intercambiar · `evidencias/m06-intercambio.jpeg` |
-| 07 | | | |
+| 07 | Leonardo | Benjamin | `validarDatos()`: vacío, no numérico, cero/negativo y misma moneda · `evidencias/m07-cantidad-invalida.png`, `m07-misma-moneda.png` |
 | 08 | | | |
 | 09 | | | |
 | 10 | | | |

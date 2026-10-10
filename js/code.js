@@ -22,17 +22,18 @@ async function convertirMoneda() {
   // Misiones guiadas 1-3: ya existe un flujo mínimo funcional EUR -> USD.
   // A partir de la Misión 4 debes convertirlo en una solución dinámica.
 
-  const valor = Number(cantidad.value);
+    // MISIÓN 04: las monedas salen de los <select> elegidos por el usuario.
+  const monedaOrigen = origen.value;
+  const monedaDestino = destino.value;
 
-  // TODO · MISIÓN 07: sustituir esta validación mínima por una validación completa.
-  if (!Number.isFinite(valor) || valor <= 0) {
-    mostrarError("Escribe una cantidad mayor que cero.");
+  // MISIÓN 07: validar los datos antes de consultar la API.
+  const mensajeError = validarDatos(monedaOrigen, monedaDestino);
+  if (mensajeError !== "") {
+    mostrarError(mensajeError);
     return;
   }
 
-  // MISIÓN 04: las monedas salen de los <select> elegidos por el usuario.
-  const monedaOrigen = origen.value;
-  const monedaDestino = destino.value;
+  const valor = Number(cantidad.value);
 
   const url = `https://api.frankfurter.dev/v2/rate/${monedaOrigen}/${monedaDestino}`;
 
@@ -61,6 +62,33 @@ function intercambiarMonedas() {
   destino.value = temporal;
 
   convertirMoneda();
+}
+
+function validarDatos(monedaOrigen, monedaDestino) {
+  // MISIÓN 07: devuelve un mensaje de error, o "" si todo está bien.
+  if (cantidad.validity.badInput) {
+    return "La cantidad no es un número válido.";
+  }
+
+  if (cantidad.value.trim() === "") {
+    return "Escribe una cantidad para convertir.";
+  }
+
+  const valor = Number(cantidad.value);
+
+  if (!Number.isFinite(valor)) {
+    return "La cantidad no es un número válido.";
+  }
+
+  if (valor <= 0) {
+    return "La cantidad debe ser mayor que cero.";
+  }
+
+  if (monedaOrigen === monedaDestino) {
+    return "Elige dos monedas distintas para convertir.";
+  }
+
+  return "";
 }
 
 // 4. UTILIDADES DE INTERFAZ

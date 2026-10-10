@@ -10,7 +10,7 @@
 | 00 | Benjamin | Leonardo | Starter Project inicial |
 | 01–03 | Leonardo | Benjamin | Flujo guiado EUR/USD verificado · evidencias/console-eur-usd.png |
 | 04 | Benjamin | Leonardo | Origen y destino desde los `<select>` · `evidencias/app-eur-jpy.png`, `network-headers-eur-jpy.png`, `network-response-eur-jpy.png` |
-| 05 | | | |
+| 05 | Leonardo | Benjamin | `mostrarResultado()` y `formatearNumero()` · resultado con separador de miles |
 | 06 | | | |
 | 07 | | | |
 | 08 | | | |
@@ -35,7 +35,7 @@ Endpoint de referencia:
 Registra aquí al menos dos decisiones tomadas por la pareja y explica por qué.
 
 1. Leemos `origen.value` y `destino.value` dentro de `convertirMoneda()` y no al cargar la página, para usar siempre la moneda seleccionada en el momento del clic.
-2. 
+2. Separamos `mostrarResultado()` y `formatearNumero()` de `convertirMoneda()`: así cada función tiene una sola responsabilidad, y con `toLocaleString("es-MX")` los montos grandes se leen con separador de miles (17,747.00 en lugar de 17747.00).
 
 ## Revisión cruzada
 - Aspecto bien resuelto:

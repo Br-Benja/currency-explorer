@@ -30,7 +30,7 @@ async function convertirMoneda() {
     return;
   }
 
-  // TODO · MISIÓN 04: reemplazar EUR y USD por los valores elegidos en los <select>.
+    // MISIÓN 04: las monedas salen de los <select> elegidos por el usuario.
   const monedaOrigen = origen.value;
   const monedaDestino = destino.value;
 
@@ -45,10 +45,7 @@ async function convertirMoneda() {
     console.log("Respuesta de la API:", datos);
 
     const conversion = valor * datos.rate;
-
-    resultado.classList.remove("error");
-    resultadoTexto.textContent = `${valor.toFixed(2)} ${monedaOrigen} = ${conversion.toFixed(2)} ${monedaDestino}`;
-    detalleTasa.textContent = `1 ${monedaOrigen} = ${datos.rate} ${monedaDestino} · ${datos.date}`;
+    mostrarResultado(valor, conversion, datos);
 
   } catch (error) {
     // TODO · MISIÓN 09: mejora el mensaje y analiza qué errores pueden llegar aquí.
@@ -70,6 +67,19 @@ function mostrarError(mensaje) {
   resultado.classList.add("error");
   resultadoTexto.textContent = mensaje;
   detalleTasa.textContent = "Revisa los datos e inténtalo nuevamente.";
+}
+
+function mostrarResultado(valor, conversion, datos) {
+  resultado.classList.remove("error");
+  resultadoTexto.textContent = `${formatearNumero(valor)} ${datos.base} = ${formatearNumero(conversion)} ${datos.quote}`;
+  detalleTasa.textContent = `1 ${datos.base} = ${datos.rate} ${datos.quote} · Fecha: ${datos.date}`;
+}
+
+function formatearNumero(numero) {
+  return numero.toLocaleString("es-MX", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
 }
 
 // PISTA PARA EL RETO:

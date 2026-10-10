@@ -26,7 +26,7 @@ input:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(22,1
 .swap{transition:transform .25s,background .2s}
 .swap:hover:not(:disabled){transform:rotate(180deg)}
 .primary:focus-visible,.swap:focus-visible{outline:3px solid rgba(22,117,139,.45);outline-offset:2px}
-@media(max-width:420px){
+@media(max-width:680px){
   .currency-grid{grid-template-columns:1fr;gap:10px}
   .swap{justify-self:center;width:44px;transform:rotate(90deg)}
   .swap:hover:not(:disabled){transform:rotate(270deg)}

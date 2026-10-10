@@ -89,6 +89,11 @@ function validarDatos(monedaOrigen, monedaDestino) {
   if (valor <= 0) {
     return "La cantidad debe ser mayor que cero.";
   }
+  
+  // REVISIÓN CRUZADA: con números enormes JavaScript pierde precisión.
+  if (valor > 1000000000) {
+    return "La cantidad máxima es 1,000,000,000 (mil millones).";
+  }
 
   if (monedaOrigen === monedaDestino) {
     return "Elige dos monedas distintas para convertir.";

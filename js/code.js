@@ -35,28 +35,32 @@ async function convertirMoneda() {
 
   const valor = Number(cantidad.value);
 
-  const url = `https://api.frankfurter.dev/v2/rate/${monedaOrigen}/${monedaDestino}`;
-
   try {
     // MISIÓN 08: estado de carga mientras esperamos a la API.
     mostrarCargando(true);
-    const respuesta = await fetch(url);
 
-    // TODO · MISIÓN 09: comprobar response.ok y lanzar un error si corresponde.
-    const datos = await respuesta.json();
+    // MISIÓN 09: obtenerTasa() lanza un error si algo sale mal.
+    const datos = await obtenerTasa(monedaOrigen, monedaDestino);
     console.log("Respuesta de la API:", datos);
 
     const conversion = valor * datos.rate;
     mostrarResultado(valor, conversion, datos);
 
   } catch (error) {
-    // TODO · MISIÓN 09: mejora el mensaje y analiza qué errores pueden llegar aquí.
-    mostrarError("No fue posible completar la consulta.");
+    // MISIÓN 09: identificar qué tipo de error llegó para mostrar un mensaje claro.
+    if (error instanceof TypeError) {
+      mostrarError("Sin conexión: no se pudo contactar al servicio de tipos de cambio.");
+    } else if (error instanceof SyntaxError) {
+      mostrarError("La respuesta del servicio no tiene un formato válido.");
+    } else {
+      mostrarError(error.message);
+    }
     console.error(error);
   } finally {
     mostrarCargando(false);
   }
 }
+
 function intercambiarMonedas() {
   // MISIÓN 06: intercambia origen y destino y vuelve a calcular.
   const temporal = origen.value;
@@ -91,6 +95,24 @@ function validarDatos(monedaOrigen, monedaDestino) {
   }
 
   return "";
+}
+
+async function obtenerTasa(monedaOrigen, monedaDestino) {
+  // MISIÓN 09: única función que habla con la API.
+  const url = `https://api.frankfurter.dev/v2/rate/${monedaOrigen}/${monedaDestino}`;
+  const respuesta = await fetch(url);
+
+  if (!respuesta.ok) {
+    throw new Error(`El servicio respondió con un error (código ${respuesta.status}).`);
+  }
+
+  const datos = await respuesta.json();
+
+  if (typeof datos.rate !== "number") {
+    throw new Error("La respuesta del servicio no trae un tipo de cambio válido.");
+  }
+
+  return datos;
 }
 
 // 4. UTILIDADES DE INTERFAZ

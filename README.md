@@ -14,7 +14,7 @@
 | 06 | Benjamin | Leonardo | `intercambiarMonedas()` con variable temporal · recalcula al intercambiar · `evidencias/m06-intercambio.jpeg` |
 | 07 | Leonardo | Benjamin | `validarDatos()`: vacío, no numérico, cero/negativo y misma moneda · `evidencias/m07-cantidad-invalida.png`, `m07-misma-moneda.png` |
 | 08 | Benjamin | Leonardo | `mostrarCargando()` + `finally` · botones deshabilitados mientras carga · `evidencias/m08-cargando.jpeg` |
-| 09 | | | |
+| 09 | Leonardo | Benjamin | `obtenerTasa()` con `response.ok` + `catch` por tipo de error · `evidencias/m09-sin-conexion.jpeg`, `m09-moneda-invalida.jpeg` |
 | 10 | | | |
 | 11 | | | |
 
@@ -37,6 +37,7 @@ Registra aquí al menos dos decisiones tomadas por la pareja y explica por qué.
 1. Leemos `origen.value` y `destino.value` dentro de `convertirMoneda()` y no al cargar la página, para usar siempre la moneda seleccionada en el momento del clic.
 2. Separamos `mostrarResultado()` y `formatearNumero()` de `convertirMoneda()`: así cada función tiene una sola responsabilidad, y con `toLocaleString("es-MX")` los montos grandes se leen con separador de miles (17,747.00 en lugar de 17747.00).
 3. Validamos con `validarDatos()` antes del `fetch` para no hacer peticiones con datos incorrectos. Usamos `cantidad.validity.badInput` porque un `<input type="number">` entrega `""` cuando el texto no es un número.
+4. Toda la comunicación con la API vive en `obtenerTasa()`, que revisa `response.ok` y lanza un `Error` con un mensaje claro. Así, si cambiáramos de API, solo habría que modificar esa función.
 
 ## Revisión cruzada
 - Aspecto bien resuelto:

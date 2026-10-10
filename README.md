@@ -73,10 +73,7 @@ Con una moneda inválida, la API responde **422** con `{ "status": 422, "message
 | 10 | Benjamin | Leonardo | Selectores apilados en ≤680px, ⇄ girado, `overflow-wrap` y foco visible · `evidencias/m10-movil.png`, `m10-escritorio.jpeg` |
 | RC | Leonardo | Benjamin | Revisión cruzada: límite máximo, breakpoint 680px y capturas corregidas · `evidencias/rc-limite-maximo.png` |
 | 11 | Benjamin | Leonardo | Histórico mensual con `/v2/rates`, `map()` a dos arreglos y gráfica con Chart.js · `evidencias/m11-historico.jpeg` |
-<<<<<<< HEAD
 | Final | Leonardo | Benjamin | README final, reflexión y captura del historial · `evidencias/git-historial.png` |
-=======
->>>>>>> f858e571247f889aded6b831451556e0b946c463
 
 Cada commit indica el Driver y el Navigator en el mensaje e incluye al Navigator como coautor (`Co-authored-by`).
 
@@ -91,10 +88,6 @@ Cada commit indica el Driver y el Navigator en el mensaje e incluye al Navigator
 4. Toda la comunicación con la API vive en `obtenerTasa()`, que revisa `response.ok` y lanza un `Error` con un mensaje claro. Así, si cambiáramos de API, solo habría que modificar esa función.
 5. En pantallas de 680px o menos apilamos los selectores y giramos ⇄ a ⇅, porque en pantallas angostas los nombres de las monedas se cortaban. Con `overflow-wrap:anywhere` los montos largos ya no se salen de la tarjeta.
 6. Para el histórico usamos `map()` para convertir la serie de la API en dos arreglos (meses y tasas), que es lo que necesita Chart.js. La librería solo dibuja; la consulta, la validación y la transformación de datos son JavaScript nuestro.
-<<<<<<< HEAD
-=======
-
->>>>>>> f858e571247f889aded6b831451556e0b946c463
 
 ## Revisión cruzada
 - **Aspecto bien resuelto:** cada función tiene una sola responsabilidad (`validarDatos()`, `obtenerTasa()`, `mostrarResultado()`, `mostrarCargando()`) y el `finally` garantiza que los botones se reactiven aunque falle la red.

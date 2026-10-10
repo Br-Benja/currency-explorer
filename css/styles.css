@@ -19,3 +19,15 @@ input:focus,select:focus{border-color:var(--teal);box-shadow:0 0 0 3px rgba(22,1
 @media(max-width:600px){.hero,.panel{padding-left:22px;padding-right:22px}.currency-grid{grid-template-columns:1fr 46px 1fr;gap:8px}.swap{height:44px}.field label{font-size:.72rem}}
 
 .swap:disabled{opacity:.55;cursor:wait}
+
+/* MISIÓN 10 · Diseño responsive y usabilidad */
+.result strong{overflow-wrap:anywhere}
+.primary:disabled:hover{background:var(--teal)}
+.swap{transition:transform .25s,background .2s}
+.swap:hover:not(:disabled){transform:rotate(180deg)}
+.primary:focus-visible,.swap:focus-visible{outline:3px solid rgba(22,117,139,.45);outline-offset:2px}
+@media(max-width:420px){
+  .currency-grid{grid-template-columns:1fr;gap:10px}
+  .swap{justify-self:center;width:44px;transform:rotate(90deg)}
+  .swap:hover:not(:disabled){transform:rotate(270deg)}
+}

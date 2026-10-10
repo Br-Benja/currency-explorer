@@ -10,8 +10,8 @@
 | 00 | Benjamin | Leonardo | Starter Project inicial |
 | 01–03 | Leonardo | Benjamin | Flujo guiado EUR/USD verificado · evidencias/console-eur-usd.png |
 | 04 | Benjamin | Leonardo | Origen y destino desde los `<select>` · `evidencias/app-eur-jpy.png`, `network-headers-eur-jpy.png`, `network-response-eur-jpy.png` |
-| 05 | Leonardo | Benjamin | `mostrarResultado()` y `formatearNumero()` · resultado con separador de miles · `evidencias/m05-formato-miles.png` |
-| 06 | Benjamin | Leonardo | `intercambiarMonedas()` con variable temporal · recalcula al intercambiar · `evidencias/m06-intercambio.png` |
+| 05 | Leonardo | Benjamin | `mostrarResultado()` y `formatearNumero()` · resultado con separador de miles · `evidencias/m05-formato-miles.jpeg` |
+| 06 | Benjamin | Leonardo | `intercambiarMonedas()` con variable temporal · recalcula al intercambiar · `evidencias/m06-intercambio.jpeg` |
 | 07 | | | |
 | 08 | | | |
 | 09 | | | |

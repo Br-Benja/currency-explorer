@@ -22,7 +22,7 @@ async function convertirMoneda() {
   // Misiones guiadas 1-3: ya existe un flujo mínimo funcional EUR -> USD.
   // A partir de la Misión 4 debes convertirlo en una solución dinámica.
 
-    // MISIÓN 04: las monedas salen de los <select> elegidos por el usuario.
+  // MISIÓN 04: las monedas salen de los <select> elegidos por el usuario.
   const monedaOrigen = origen.value;
   const monedaDestino = destino.value;
 
@@ -38,7 +38,8 @@ async function convertirMoneda() {
   const url = `https://api.frankfurter.dev/v2/rate/${monedaOrigen}/${monedaDestino}`;
 
   try {
-    // TODO · MISIÓN 08: activar un estado visual de carga antes de consultar.
+    // MISIÓN 08: estado de carga mientras esperamos a la API.
+    mostrarCargando(true);
     const respuesta = await fetch(url);
 
     // TODO · MISIÓN 09: comprobar response.ok y lanzar un error si corresponde.
@@ -52,9 +53,10 @@ async function convertirMoneda() {
     // TODO · MISIÓN 09: mejora el mensaje y analiza qué errores pueden llegar aquí.
     mostrarError("No fue posible completar la consulta.");
     console.error(error);
+  } finally {
+    mostrarCargando(false);
   }
 }
-
 function intercambiarMonedas() {
   // MISIÓN 06: intercambia origen y destino y vuelve a calcular.
   const temporal = origen.value;
@@ -102,6 +104,21 @@ function mostrarResultado(valor, conversion, datos) {
   resultado.classList.remove("error");
   resultadoTexto.textContent = `${formatearNumero(valor)} ${datos.base} = ${formatearNumero(conversion)} ${datos.quote}`;
   detalleTasa.textContent = `1 ${datos.base} = ${datos.rate} ${datos.quote} · Fecha: ${datos.date}`;
+}
+
+function mostrarCargando(cargando) {
+  // MISIÓN 08: bloquea los botones mientras esperamos la respuesta.
+  btnConvertir.disabled = cargando;
+  btnIntercambiar.disabled = cargando;
+
+  if (cargando) {
+    btnConvertir.textContent = "Consultando...";
+    resultado.classList.remove("error");
+    resultadoTexto.textContent = "Consultando...";
+    detalleTasa.textContent = "Esperando la respuesta de la API.";
+  } else {
+    btnConvertir.textContent = "Convertir";
+  }
 }
 
 function formatearNumero(numero) {
